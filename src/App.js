@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { RecipesContext } from './context/RecipesContext';
+import Header from './components/Header';
+import Form from './components/Form';
+import RecipesList from './components/RecipesList';
+
+const App = () => {
+    const { recipes } = useContext(RecipesContext);
+
+    return (
+        <>
+            <Header />
+
+            <div className="container mt-5">
+                <div className="row">
+                    <Form />
+                </div>
+
+                {Object.keys(recipes).length !== 0 && <RecipesList />}
+            </div>
+        </>
+    );
+};
 
 export default App;
